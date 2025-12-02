@@ -7,6 +7,7 @@ def determine_new_position(starting_position, line):
         return (starting_position - dial_distance) % DIAL_SIZE
     return (starting_position + dial_distance) % DIAL_SIZE
 
+
 def determine_amount_of_zeroes_passed(starting_position, line):
     dial_distance = int(line[1:])
     if line[0] == 'L':
@@ -14,6 +15,7 @@ def determine_amount_of_zeroes_passed(starting_position, line):
         return dial_distance // DIAL_SIZE + (starting_position != 0 and remainder >= starting_position)
     else:
         return (starting_position + dial_distance) // DIAL_SIZE
+
 
 with open('./input') as input_file:
     current_position = STARTING_POSITION
@@ -24,7 +26,5 @@ with open('./input') as input_file:
         amount_of_zeroes_passed = determine_amount_of_zeroes_passed(current_position, current_line)
         current_position = determine_new_position(current_position, current_line)
         tally_zeroes += amount_of_zeroes_passed
-
-        print(f'Line: {current_line.strip()}; position: {initial_position} to {current_position}; zeroes passed: {amount_of_zeroes_passed}; total: {tally_zeroes}')
 
     print(tally_zeroes)

@@ -7,6 +7,7 @@ def determine_new_position(starting_position, line):
         return (starting_position - dial_distance) % DIAL_SIZE
     return (starting_position + dial_distance) % DIAL_SIZE
 
+
 with open('./input') as input_file:
     current_position = STARTING_POSITION
     tally_zeroes = 0

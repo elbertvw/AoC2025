@@ -6,15 +6,13 @@
 
 def is_valid(identifier):
     id_length = len(identifier)
-    length_is_odd = id_length % 2 != 0
-    if length_is_odd:
+
+    if id_length % 2 != 0:
         return True
 
-    consists_of_two_equal_halves = identifier[:id_length // 2] == identifier[(id_length // 2):]
-    if consists_of_two_equal_halves:
-        return False
+    consists_of_equal_halves = identifier[:id_length // 2] == identifier[(id_length // 2):]
+    return not consists_of_equal_halves
 
-    return True
 
 with open('input') as input_file:
     raw_ranges = input_file.read().split(',')
