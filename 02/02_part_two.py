@@ -28,12 +28,12 @@ def is_valid(identifier):
 
 with open('input') as input_file:
     range_strings = input_file.read().split(',')
-    result = 0
+    sum_of_invalid_identifiers = 0
 
     for range_string in range_strings:
         lower_bound, upper_bound = map(int, range_string.split('-'))
         for identifier in range(lower_bound, upper_bound + 1):
             if not is_valid(str(identifier)):
-                result += identifier
+                sum_of_invalid_identifiers += identifier
 
-    print(result)
+    print(sum_of_invalid_identifiers)

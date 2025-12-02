@@ -1,5 +1,4 @@
-# Solution for 02 part one. An optimization could be to exclude entire ranges where the whole range consists of odd
-# numbers, but I did not implement this (seemed overkill).
+# Solution for 02 part one.
 
 # Definition of invalid: "You can find the invalid IDs by looking for any ID which is made only of some sequence of
 # digits repeated twice. So, 55 (5 twice), 6464 (64 twice), and 123123 (123 twice) would all be invalid IDs."
@@ -16,12 +15,12 @@ def is_valid(identifier):
 
 with open('input') as input_file:
     range_strings = input_file.read().split(',')
-    result = 0
+    sum_of_invalid_identifiers = 0
 
     for range_string in range_strings:
         lower_bound, upper_bound = map(int, range_string.split('-'))
         for identifier in range(lower_bound, upper_bound + 1):
             if not is_valid(str(identifier)):
-                result += identifier
+                sum_of_invalid_identifiers += identifier
 
-    print(result)
+    print(sum_of_invalid_identifiers)
