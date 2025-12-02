@@ -1,8 +1,9 @@
-# Solution for 02 part two.
-
 # Definition of invalid: "Now, an ID is invalid if it is made only of some sequence of digits repeated at least twice.
 # So, 12341234 (1234 two times), 123123123 (123 three times), 1212121212 (12 five times), and 1111111 (1 seven times)
 # are all invalid IDs."
+from concurrent.futures import ProcessPoolExecutor
+
+INPUT_FILENAME = 'input'
 
 def find_divisors(identifier):
     divisors = []
@@ -26,14 +27,23 @@ def is_valid(identifier):
     return True
 
 
-with open('input') as input_file:
-    range_strings = input_file.read().split(',')
+def sum_invalid_identifiers_in_range(range_string):
+    lower_bound, upper_bound = map(int, range_string.split('-'))
     sum_of_invalid_identifiers = 0
+    for identifier in range(lower_bound, upper_bound + 1):
+        if not is_valid(str(identifier)):
+            sum_of_invalid_identifiers += identifier
+    return sum_of_invalid_identifiers
 
-    for range_string in range_strings:
-        lower_bound, upper_bound = map(int, range_string.split('-'))
-        for identifier in range(lower_bound, upper_bound + 1):
-            if not is_valid(str(identifier)):
-                sum_of_invalid_identifiers += identifier
 
-    print(sum_of_invalid_identifiers)
+def main():
+    with open(INPUT_FILENAME) as input_file:
+        range_strings = input_file.read().split(',')
+
+    with ProcessPoolExecutor() as executor:
+        results = executor.map(sum_invalid_identifiers_in_range, range_strings)
+
+    print(sum(results))
+
+if __name__ == "__main__":
+    main()

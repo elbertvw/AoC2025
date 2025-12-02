@@ -1,3 +1,4 @@
+INPUT_FILENAME = 'input'
 STARTING_POSITION = 50
 DIAL_SIZE = 100
 
@@ -19,7 +20,7 @@ def determine_amount_of_zeroes_passed(starting_position, line):
         return (starting_position + dial_distance) // DIAL_SIZE
 
 
-with open('./input') as input_file:
+with open(INPUT_FILENAME) as input_file:
     position = STARTING_POSITION
     total_zeroes = 0
 
