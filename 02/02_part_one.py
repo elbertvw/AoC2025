@@ -15,13 +15,13 @@ def is_valid(identifier):
 
 
 with open('input') as input_file:
-    raw_ranges = input_file.read().split(',')
-    range_tuples = [(id_range.split('-')[0], id_range.split('-')[1]) for id_range in raw_ranges]
-    invalid_ids = []
+    range_strings = input_file.read().split(',')
+    result = 0
 
-    for range_tuple in range_tuples:
-        for identifier in range(int(range_tuple[0]), int(range_tuple[1]) + 1):
+    for range_string in range_strings:
+        lower_bound, upper_bound = map(int, range_string.split('-'))
+        for identifier in range(lower_bound, upper_bound + 1):
             if not is_valid(str(identifier)):
-                invalid_ids.append(identifier)
+                result += identifier
 
-    print(sum(invalid_ids))
+    print(result)
