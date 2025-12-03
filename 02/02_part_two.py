@@ -2,13 +2,15 @@
 # So, 12341234 (1234 two times), 123123123 (123 three times), 1212121212 (12 five times), and 1111111 (1 seven times)
 # are all invalid IDs."
 from concurrent.futures import ProcessPoolExecutor
+from functools import lru_cache
 
 INPUT_FILENAME = 'input'
 
-def find_divisors(identifier):
+@lru_cache(None)
+def find_divisors(n):
     divisors = []
-    for number in range(1, identifier // 2 + 1):
-        if identifier % number == 0:
+    for number in range(1, n // 2 + 1):
+        if n % number == 0:
             divisors.append(number)
 
     return divisors
