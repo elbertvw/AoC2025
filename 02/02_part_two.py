@@ -13,7 +13,7 @@ def find_divisors(n):
 
 def consists_of_equal_groups(id, group_size):
     group = id[:group_size]
-    return id == group * (len(id) // group_size)
+    return id == (group * (len(id) // group_size))
 
 
 def is_valid(id):
