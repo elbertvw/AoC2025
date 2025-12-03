@@ -8,34 +8,25 @@ INPUT_FILENAME = 'input'
 
 @lru_cache(None)
 def find_divisors(n):
-    divisors = []
-    for number in range(1, n // 2 + 1):
-        if n % number == 0:
-            divisors.append(number)
-
-    return divisors
+    return [divisor for divisor in range(1, n // 2 + 1) if n % divisor == 0]
 
 
-def consists_of_equal_groups(identifier, group_size):
-    group = identifier[:group_size]
-    return identifier == group * (len(identifier) // group_size)
+def consists_of_equal_groups(id, group_size):
+    group = id[:group_size]
+    return id == group * (len(id) // group_size)
 
 
-def is_valid(identifier):
-    id_length = len(identifier)
+def is_valid(id):
+    id_length = len(id)
     for divisor in find_divisors(id_length):
-        if consists_of_equal_groups(identifier, divisor):
+        if consists_of_equal_groups(id, divisor):
             return False
     return True
 
 
-def sum_invalid_identifiers_in_range(range_string):
+def sum_invalid_ids_in_range(range_string):
     lower_bound, upper_bound = map(int, range_string.split('-'))
-    sum_of_invalid_identifiers = 0
-    for identifier in range(lower_bound, upper_bound + 1):
-        if not is_valid(str(identifier)):
-            sum_of_invalid_identifiers += identifier
-    return sum_of_invalid_identifiers
+    return sum(id for id in range(lower_bound, upper_bound + 1) if not is_valid(str(id)))
 
 
 def main():
@@ -43,7 +34,7 @@ def main():
         range_strings = input_file.read().split(',')
 
     with ProcessPoolExecutor() as executor:
-        results = executor.map(sum_invalid_identifiers_in_range, range_strings)
+        results = executor.map(sum_invalid_ids_in_range, range_strings)
 
     print(sum(results))
 

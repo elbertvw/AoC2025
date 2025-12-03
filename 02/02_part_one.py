@@ -4,23 +4,19 @@ from concurrent.futures import ProcessPoolExecutor
 
 INPUT_FILENAME = 'input'
 
-def is_valid(identifier):
-    id_length = len(identifier)
+def is_valid(id):
+    id_length = len(id)
 
     if id_length % 2 != 0:
         return True
 
-    consists_of_equal_halves = identifier[:id_length // 2] == identifier[(id_length // 2):]
+    consists_of_equal_halves = id[:id_length // 2] == id[(id_length // 2):]
     return not consists_of_equal_halves
 
 
-def sum_invalid_identifiers_in_range(range_string):
+def sum_invalid_ids_in_range(range_string):
     lower_bound, upper_bound = map(int, range_string.split('-'))
-    sum_of_invalid_identifiers = 0
-    for identifier in range(lower_bound, upper_bound + 1):
-        if not is_valid(str(identifier)):
-            sum_of_invalid_identifiers += identifier
-    return sum_of_invalid_identifiers
+    return sum(id for id in range(lower_bound, upper_bound + 1) if not is_valid(str(id)))
 
 
 def main():
@@ -28,7 +24,7 @@ def main():
         range_strings = input_file.read().split(',')
 
     with ProcessPoolExecutor() as executor:
-        results = executor.map(sum_invalid_identifiers_in_range, range_strings)
+        results = executor.map(sum_invalid_ids_in_range, range_strings)
 
     print(sum(results))
 
