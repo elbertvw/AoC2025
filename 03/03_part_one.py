@@ -1,7 +1,7 @@
 INPUT_FILENAME = 'input'
 
 def get_max_joltage(line):
-    digits = [int(digit) for digit in line.strip()]
+    digits = [int(digit) for digit in line]
     highest_digit = max(digits)
     highest_index = digits.index(highest_digit)
 
@@ -14,7 +14,7 @@ def get_max_joltage(line):
 
 
 with open(INPUT_FILENAME) as input_file:
-    results = [get_max_joltage(line) for line in input_file]
+    results = [get_max_joltage(line.strip()) for line in input_file]
 
 print(sum(results))
 
