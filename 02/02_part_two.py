@@ -7,7 +7,7 @@ from functools import lru_cache
 INPUT_FILENAME = 'input'
 
 @lru_cache(None)
-def find_divisors(n):
+def find_divisors(n): # could be done by looping up to isqrt(n) with some tweaks but makes the code uglier ¯\_(ツ)_/¯
     return [divisor for divisor in range(1, n // 2 + 1) if n % divisor == 0]
 
 
