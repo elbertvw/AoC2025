@@ -1,7 +1,6 @@
 INPUT_FILENAME = 'input'
 
-# input must be sorted by start of range asc
-def merge_ranges(ranges):
+def merge_ascending_ranges(ranges):
     merged_ranges = [ranges[0]]
 
     for current_start, current_end in ranges:
@@ -20,7 +19,7 @@ with open(INPUT_FILENAME) as input_file:
         key=lambda x: x[0] # sort ranges by lower bound
     )
 
-    merged = merge_ranges(ranges_asc)
+    merged = merge_ascending_ranges(ranges_asc)
     total = 0
     for r in merged:
         total += r[1] - r[0] + 1
