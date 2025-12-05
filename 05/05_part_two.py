@@ -7,7 +7,7 @@ def merge_ranges(ranges):
     for current_range in ranges:
         previous_range = merged_ranges[-1]
         if previous_range[1] >= current_range[0]:
-            merged_ranges[-1] = (previous_range[0], max(merged_ranges[-1][1], current_range[1]))
+            merged_ranges[-1] = (previous_range[0], max(previous_range[1], current_range[1]))
         else:
             merged_ranges.append(current_range)
 
