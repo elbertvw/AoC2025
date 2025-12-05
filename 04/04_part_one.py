@@ -1,5 +1,4 @@
 INPUT_FILENAME = 'input'
-PLACEHOLDER = '?'
 ROLL = '@'
 EMPTY = '.'
 MAX_ADJACENT_ROLLS = 4
