@@ -1,15 +1,15 @@
 INPUT_FILENAME = 'input'
 
-
+# input must be sorted by start of range asc
 def merge_ranges(ranges):
     merged_ranges = [ranges[0]]
 
-    for current_range in ranges:
-        previous_range = merged_ranges[-1]
-        if previous_range[1] >= current_range[0]:
-            merged_ranges[-1] = (previous_range[0], max(previous_range[1], current_range[1]))
+    for current_start, current_end in ranges:
+        previous_start, previous_end = merged_ranges[-1]
+        if previous_end >= current_start:
+            merged_ranges[-1] = (previous_start, max(previous_end, current_end))
         else:
-            merged_ranges.append(current_range)
+            merged_ranges.append((current_start, current_end))
 
     return merged_ranges
 
