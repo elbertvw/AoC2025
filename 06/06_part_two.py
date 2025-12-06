@@ -21,7 +21,7 @@ with open(INPUT_FILENAME) as input_file:
         if not column_content or column == final_column:
             if operator == '+': solution += sum(numbers)
             if operator == '*': solution += reduce(mul, numbers)
-            operator = ''
             numbers = []
                 
 print(solution) 
+
