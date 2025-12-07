@@ -7,25 +7,20 @@ OPERATIONS = {
     '*': lambda x: reduce(mul, x)
 }
 
-with open(INPUT_FILENAME) as input_file:
-    lines = [line.strip() for line in input_file.readlines()]
+with open(INPUT_FILENAME) as file:
+    lines = [line.strip()[::-1] for line in file.readlines()] # reversing facilitates using the operator as delimiter :)
     width = max(len(line) for line in lines) 
-    lines = [line.ljust(width) for line in lines]
-    final_column = width - 1 
+    lines = [line.rjust(width) for line in lines]
     
     solution = 0
     numbers = []
-    operator = ''
     
     for column in range(width):
         column_content = ''.join(line[column] for line in lines[:-1] if line[column] != ' ')
-        if column_content: 
-            numbers.append(int(''.join([n for n in column_content])))
+        if column_content: numbers.append(int(''.join([n for n in column_content])))
             
-        if lines[-1][column] in OPERATIONS: 
-            operator = lines[-1][column]
-            
-        if not column_content or column == final_column: 
+        operator = lines[-1][column]
+        if operator in OPERATIONS: 
             solution += OPERATIONS[operator](numbers)
             numbers = []
                 
