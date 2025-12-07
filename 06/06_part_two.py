@@ -16,11 +16,12 @@ with open(INPUT_FILENAME) as file:
     
     for column in range(width):
         column_content = ''.join(line[column] for line in lines[:-1] if line[column] != ' ')
-        if column_content: numbers.append(int(''.join([n for n in column_content])))
-            
+        if column_content: numbers.append(int(column_content))
+        
         operator = lines[-1][column]
         if operator in OPERATIONS: 
             solution += OPERATIONS[operator](numbers)
             numbers = []
                 
 print(solution) 
+
