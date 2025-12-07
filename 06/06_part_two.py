@@ -1,10 +1,9 @@
-from functools import reduce
-from operator import mul
+from math import prod
 
 INPUT_FILENAME = 'input'
 OPERATIONS = {
     '+': lambda x: sum(x),
-    '*': lambda x: reduce(mul, x)
+    '*': lambda x: prod(x)
 }
 
 with open(INPUT_FILENAME) as file:
