@@ -39,7 +39,7 @@ def orthogonal_polygonization(coordinates):
                     key=lambda c: c.x, default=None
                 )
 
-        if next_c in coordinates and next_c not in seen:
+        if next_c and next_c not in seen:
             result.append((current_c, next_c))
             current_c = next_c
             seen.add(next_c)
