@@ -6,7 +6,9 @@ Coordinate = namedtuple("Coordinate", ["x", "y"])
 INPUT_FILENAME = 'input'
 
 
-# took me a while to find the proper term for this. TODO algo to be improved, I'm just happy it works for the time being
+# I think this doesn't even work the way I want it to for more complex inputs, it's just that the input shape is very
+# forgiving. Would very likely fail if there were some labyrinthine protrusions in the overall polygon.
+# TODO: Really needs to be refactored
 def orthogonal_polygonization(coordinates):
     result = []
 
