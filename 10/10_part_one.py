@@ -3,8 +3,8 @@ import re
 INPUT_FILENAME = 'input'
 
 
-def press_button(machine, button):
-    result = list(machine)
+def press_button(state, button):
+    result = list(state)
     for index in button:
         result[int(index)] = '#' if result[int(index)] == '.' else '.'
     return tuple(result)
