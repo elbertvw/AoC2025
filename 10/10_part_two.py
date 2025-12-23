@@ -33,10 +33,10 @@ def solve(operations, desired_state):
     # (nb: pulp creates an lpConstraint when __eq__ is called (via == ). the comparison is not immediately evaluated!)
     for state_index in range(n_state):
         constraint = pulp.lpSum(
-                state_ops_matrix[state_index, operation_index] * operation_variables[operation_index]
-                for operation_index
-                in range(n_operations)
-            ) == desired_state[state_index]
+            state_ops_matrix[state_index, operation_index] * operation_variables[operation_index]
+            for operation_index
+            in range(n_operations)
+        ) == desired_state[state_index]
         lpProblem += constraint
 
     # solve
