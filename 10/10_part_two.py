@@ -28,8 +28,8 @@ def solve(operations, desired_state):
     lpProblem += pulp.lpSum(operation_variables)
 
     # define the constraints per index of the state.
-    # basically, we are multiplying a 0 or a 1 (from the matrix) by the op variable, and the sum of the products of that
-    # multiplication for ALL variables should yield the desired state for each of its indices
+    # basically, we are multiplying a 0 or a 1 (from the matrix) by the amount of times the operation is applied, and
+    # the sum of the amount of times EACH op is applied should evaluate to the desired state for each of its indices
     # (nb: pulp creates an lpConstraint when __eq__ is called (via == ). the comparison is not immediately evaluated!)
     for state_index in range(n_state):
         constraint = pulp.lpSum(
