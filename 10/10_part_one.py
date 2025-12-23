@@ -10,8 +10,8 @@ def press_button(state, button):
     return tuple(result)
 
 
-def shortest_path_bfs(target_state, buttons):
-    initial_state = tuple('.' * len(target_state))
+def shortest_path_bfs(desired_state, buttons):
+    initial_state = tuple('.' * len(desired_state))
 
     states_to_check = {initial_state}
     states_seen = {initial_state}
@@ -23,7 +23,7 @@ def shortest_path_bfs(target_state, buttons):
         for state in states_to_check:
             for button in buttons:
                 resulting_state = press_button(state, button)
-                if resulting_state == target_state:
+                if resulting_state == desired_state:
                     return depth
                 if resulting_state not in states_seen:
                     states_seen.add(resulting_state)
